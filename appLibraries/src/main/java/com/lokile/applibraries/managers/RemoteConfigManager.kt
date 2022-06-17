@@ -6,7 +6,7 @@ import com.lokile.applibraries.utils.convert
 import com.lokile.applibraries.utils.handleException
 import com.lokile.applibraries.utils.showDebugLog
 
-class RemoteConfigValue(val key:String, var value: Any)
+class RemoteConfigValue(val key: String, var value: Any)
 
 object DefaultRemoteConfigValues {
     val USER_SEGMENT_NAME =

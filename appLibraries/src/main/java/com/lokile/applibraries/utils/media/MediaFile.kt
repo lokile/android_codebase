@@ -4,7 +4,6 @@ import com.lokile.applibraries.utils.dateFormat
 import com.lokile.applibraries.utils.getFileKey
 import com.lokile.applibraries.utils.getLastModifiedAsLong
 import java.io.File
-import java.text.SimpleDateFormat
 import java.util.*
 
 open class MediaFile(

@@ -27,16 +27,28 @@ abstract class AppBaseAdapter<T, VB : ViewBinding>(var listItem: MutableList<T> 
         parent: ViewGroup,
         viewType: Int
     ): AppBaseRecyclerViewHolder<VB> {
-        return AppBaseRecyclerViewHolder(onCreateViewBinding(LayoutInflater.from(parent.context), viewType))
+        return AppBaseRecyclerViewHolder(
+            onCreateViewBinding(
+                LayoutInflater.from(parent.context),
+                viewType
+            )
+        )
     }
 
     override fun getItemCount(): Int {
         return listItem.size
     }
+
     override fun onBindViewHolder(holder: AppBaseRecyclerViewHolder<VB>, position: Int) {
         onBindView(holder.itemView.context, holder, position, listItem[position])
         holder.viewBinding.root.setOnClickListener {
-            itemClickLiveData.postValue(OnItemClickEvent(position, listItem[position], holder.itemView))
+            itemClickLiveData.postValue(
+                OnItemClickEvent(
+                    position,
+                    listItem[position],
+                    holder.itemView
+                )
+            )
         }
     }
 

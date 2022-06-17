@@ -41,7 +41,8 @@ fun Context.loadMediaItem(
             target.setImageDrawable(gifDrawable)
             gifDrawable.start()
 
-            target.scaleType = if (cropThumbnails) ImageView.ScaleType.CENTER_CROP else ImageView.ScaleType.FIT_CENTER
+            target.scaleType =
+                if (cropThumbnails) ImageView.ScaleType.CENTER_CROP else ImageView.ScaleType.FIT_CENTER
             return
         } catch (e: Exception) {
 
