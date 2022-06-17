@@ -150,6 +150,7 @@ fun <T> Any.convert() = this as T
 
 fun handleException(throwable: Throwable) {
     FirebaseCrashlytics.getInstance().recordException(throwable)
+    throwable.printStackTrace()
 }
 
 fun Context.getPackageInfo(): PackageInfo? {
