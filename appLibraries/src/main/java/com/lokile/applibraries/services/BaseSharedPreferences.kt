@@ -2,7 +2,8 @@ package com.lokile.applibraries.services
 
 import android.content.Context
 import androidx.core.content.edit
-import com.lokile.dataencrypter.encrypters.imp.Encrypter
+import com.lokile.encrypter.encrypters.imp.Encrypter
+
 
 open class BaseSharedPreferences(
     val preferencesName: String,
@@ -10,12 +11,12 @@ open class BaseSharedPreferences(
     val isEncrypt: Boolean = false
 ) {
     private val keyMap = hashMapOf<String, String>()
-    private val enctypter by lazy { Encrypter(context, "alias" + preferencesName) }
+    private val enctypter by lazy { Encrypter(context=context, alias="alias" + preferencesName) }
     private val pref = context.getSharedPreferences(preferencesName, Context.MODE_PRIVATE)
     fun convertKey(key: String): String {
         return if (isEncrypt) {
             keyMap.get(key)
-                ?: enctypter.encrypt(key, true)?.also {
+                ?: enctypter.encrypt(key, false)?.also {
                     keyMap[key] = it
                 } ?: key
         } else {

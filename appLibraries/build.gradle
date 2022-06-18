@@ -68,5 +68,5 @@ dependencies {
     annotationProcessor 'com.github.bumptech.glide:compiler:4.13.1'
     implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.24'
     implementation "androidx.multidex:multidex:2.0.1"
-    implementation 'com.github.lokile:data_encrypter:1.0.6'
+    implementation 'com.github.lokile:LokileCrypt:1.1.0'
 }
