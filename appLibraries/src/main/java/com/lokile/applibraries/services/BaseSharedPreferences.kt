@@ -16,7 +16,7 @@ open class BaseSharedPreferences(
     fun convertKey(key: String): String {
         return if (isEncrypt) {
             keyMap.get(key)
-                ?: enctypter.encrypt(key, false)?.also {
+                ?: enctypter.encryptOrNull(key, false)?.also {
                     keyMap[key] = it
                 } ?: key
         } else {
@@ -26,7 +26,7 @@ open class BaseSharedPreferences(
 
     fun encryptString(data: String): String {
         return if (isEncrypt) {
-            enctypter.encrypt(data) ?: data
+            enctypter.encryptOrNull(data) ?: data
         } else {
             data
         }
@@ -34,7 +34,7 @@ open class BaseSharedPreferences(
 
     fun decryptString(data: String?): String? {
         return if (isEncrypt && !data.isNullOrEmpty()) {
-            enctypter.decrypt(data) ?: data
+            enctypter.decryptOrNull(data) ?: data
         } else {
             data
         }
