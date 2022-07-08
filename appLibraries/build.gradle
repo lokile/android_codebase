@@ -1,6 +1,7 @@
 plugins {
     id 'com.android.library'
     id 'org.jetbrains.kotlin.android'
+    id 'maven-publish'
 }
 
 android {
@@ -59,4 +60,18 @@ dependencies {
     implementation "androidx.multidex:multidex:2.0.1"
     implementation 'com.github.lokile:LokileCrypt:1.1.3'
     implementation 'com.github.lokile:firebase_analytics_support:0.0.1'
+}
+
+afterEvaluate {
+    publishing {
+        publications {
+            release(MavenPublication) {
+                from components.release
+
+                groupId = 'com.github.lokile'
+                artifactId = 'base'
+                version = '0.0.0'
+            }
+        }
+    }
 }
