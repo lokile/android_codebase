@@ -56,14 +56,7 @@ dependencies {
     implementation "io.reactivex.rxjava3:rxkotlin:3.0.1"
     implementation 'io.reactivex.rxjava3:rxandroid:3.0.0'
 
-    // Import the BoM for the Firebase platform
-    implementation platform('com.google.firebase:firebase-bom:30.1.0')
-    implementation 'com.google.firebase:firebase-analytics'
-    implementation 'com.google.firebase:firebase-analytics-ktx'
-    implementation 'com.google.firebase:firebase-config'
-    implementation 'com.google.firebase:firebase-config-ktx'
-    implementation 'com.google.firebase:firebase-crashlytics'
-
     implementation "androidx.multidex:multidex:2.0.1"
     implementation 'com.github.lokile:LokileCrypt:1.1.3'
+    implementation 'com.github.lokile:firebase_analytics_support:0.0.1'
 }

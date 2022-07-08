@@ -8,7 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.viewbinding.ViewBinding
 import com.lokile.applibraries.managers.RxBus
 import com.lokile.applibraries.managers.RxBusListener
-import com.lokile.applibraries.utils.handleException
+import com.lokile.firebase_analytics_support.handleException
 
 abstract class AppBaseFragment<T : ViewBinding> : Fragment(), IView<T>, RxBusListener {
     override val uuid: Int by lazy { RxBus.INSTANCE.newUUID() }

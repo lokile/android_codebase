@@ -16,7 +16,6 @@ import android.util.Log
 import android.view.ViewConfiguration
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.core.content.ContextCompat
-import com.google.firebase.crashlytics.FirebaseCrashlytics
 import com.lokile.applibraries.BuildConfig
 import java.io.File
 import java.io.Serializable
@@ -112,17 +111,3 @@ inline fun <reified T : Activity> Activity.openActivity(vararg params: Pair<Stri
 }
 
 fun <T> Any.convert() = this as T
-
-fun handleException(throwable: Throwable) {
-    FirebaseCrashlytics.getInstance().recordException(throwable)
-    throwable.printStackTrace()
-}
-
-fun Context.getPackageInfo(): PackageInfo? {
-    try {
-        return packageManager.getPackageInfo(packageName, 0)
-    } catch (e: Exception) {
-        handleException(e)
-        return null
-    }
-}

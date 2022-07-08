@@ -3,12 +3,8 @@ package com.lokile.applibraries.base
 import android.app.Application
 import android.content.Context
 import androidx.multidex.MultiDex
-import com.google.firebase.analytics.ktx.analytics
-import com.google.firebase.ktx.Firebase
-import com.google.firebase.remoteconfig.ktx.remoteConfig
-import com.lokile.applibraries.managers.*
-import com.lokile.applibraries.utils.convert
-import com.lokile.applibraries.utils.getPackageInfo
+import com.lokile.applibraries.managers.RemoteConfigValue
+import com.lokile.firebase_analytics_support.initFirebase
 
 abstract class BaseApplication : Application() {
     abstract fun allowLoggingEventTracking(): Boolean
@@ -16,19 +12,7 @@ abstract class BaseApplication : Application() {
     override fun onCreate() {
         super.onCreate()
         app = this
-
-        EventTrackingManager.init(this, Firebase.analytics, allowLoggingEventTracking())
-        setCurrentAppVersion(getPackageInfo()?.versionName.orEmpty())
-        RemoteConfigManager.reloadConfig(
-            Firebase.remoteConfig,
-            loadRemoteConfig().plus(
-                DefaultRemoteConfigValues.USER_SEGMENT_NAME
-            )
-        ) { fromPrevious, isUpdated, isSuccess ->
-            if (isSuccess) {
-                setUserSegmentName(DefaultRemoteConfigValues.USER_SEGMENT_NAME.value.convert())
-            }
-        }
+        initFirebase(this, loadRemoteConfig(), allowLoggingEventTracking())
     }
 
     override fun attachBaseContext(base: Context) {
