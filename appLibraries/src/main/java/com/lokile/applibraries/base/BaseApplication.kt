@@ -17,9 +17,10 @@ abstract class BaseApplication : Application() {
 
     fun setupFirebase(
         remoteConfigList: List<RemoteConfigValue>,
-        logEventTracking: Boolean
+        logEventTracking: Boolean,
+        loadingCallback: ((loadFromPreviousVersion: Boolean, configUpdated: Boolean, fetchSuccess: Boolean) -> Unit)? = null
     ) {
-        initFirebase(this, remoteConfigList, logEventTracking)
+        initFirebase(this, remoteConfigList, logEventTracking, loadingCallback)
     }
 
 
