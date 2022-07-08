@@ -10,7 +10,7 @@ import androidx.viewbinding.ViewBinding
 import com.lokile.applibraries.managers.RxBus
 import com.lokile.applibraries.managers.RxBusListener
 import com.lokile.applibraries.utils.checkAppPermission
-import com.lokile.firebase_analytics_support.handleException
+import com.lokile.applibraries.utils.handleException
 
 abstract class AppBaseActivity<T : ViewBinding> : AppCompatActivity(), IView<T>, RxBusListener {
     private val permissionRequestCallBack = HashMap<Int, (result: Boolean) -> Unit>()

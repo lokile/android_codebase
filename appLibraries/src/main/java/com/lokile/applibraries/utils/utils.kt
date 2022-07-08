@@ -1,14 +1,10 @@
 package com.lokile.applibraries.utils
 
 import android.app.Activity
-import android.app.Application
 import android.content.Context
 import android.content.Intent
-import android.content.pm.PackageInfo
 import android.content.pm.PackageManager
-import android.database.Cursor
 import android.graphics.PorterDuff
-import android.net.Uri
 import android.os.Bundle
 import android.os.Looper
 import android.os.Parcelable
@@ -17,10 +13,7 @@ import android.view.ViewConfiguration
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.core.content.ContextCompat
 import com.lokile.applibraries.BuildConfig
-import java.io.File
 import java.io.Serializable
-import java.text.SimpleDateFormat
-import java.util.*
 
 fun String.showDebugLog(tag: String = "AppLibraries"): String {
     if (BuildConfig.DEBUG) {
