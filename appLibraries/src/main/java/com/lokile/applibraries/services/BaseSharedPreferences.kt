@@ -1,5 +1,6 @@
 package com.lokile.applibraries.services
 
+import android.content.ClipData
 import android.content.Context
 import androidx.core.content.edit
 import com.lokile.encrypter.encrypters.imp.Encrypter

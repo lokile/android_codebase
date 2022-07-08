@@ -23,7 +23,6 @@ import java.io.Serializable
 import java.text.SimpleDateFormat
 import java.util.*
 
-val dateFormat = SimpleDateFormat("dd-MM-yyyy", Locale.ENGLISH)
 fun String.showDebugLog(tag: String = "AppLibraries"): String {
     if (BuildConfig.DEBUG) {
         Log.d(tag, this)
@@ -68,21 +67,6 @@ fun ensureBackgroundThread(callback: () -> Unit) {
     }
 }
 
-fun <T> Application.queryContentProvider(
-    queryColumn: Array<String>, uri: Uri, queryCur: (Cursor) -> T
-): List<T> {
-    val resultList = arrayListOf<T>()
-    val cur = contentResolver.query(uri, queryColumn, null, null, null)
-    if (cur != null && cur.count > 0) {
-        if (cur.moveToFirst()) {
-            do {
-                resultList.add(queryCur(cur))
-            } while (cur.moveToNext())
-        }
-    }
-    return resultList
-}
-
 fun AppCompatImageView.changeColor(context: Context, colorId: Int, parse: Boolean = true) {
     if (parse) {
         setColorFilter(
@@ -125,25 +109,6 @@ inline fun <reified T : Activity> Activity.openActivity(vararg params: Pair<Stri
             }
         }
     )
-}
-
-fun getLastModifiedAsLong(path: String): Long {
-    var file = File(path)
-    if (file.exists()) {
-        return file.lastModified()
-    }
-    return 0
-}
-
-fun String.getFileKey(lastModified: Long? = null): String {
-    val file = File(this)
-    val modified = if (lastModified != null && lastModified > 0) {
-        lastModified
-    } else {
-        file.lastModified()
-    }
-
-    return "${file.absolutePath}$modified"
 }
 
 fun <T> Any.convert() = this as T
