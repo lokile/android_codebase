@@ -68,7 +68,7 @@ class YourAdapter(list: MutableList<YourData>) :
     }
 }
 /*************/
-//handle onClickListenr:
+
 val adapter = YourAdapter(...)
 adapter.registerItemClickListener().observe(this) {item->
   //handle onClickListener
