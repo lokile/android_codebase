@@ -42,5 +42,5 @@ abstract class AppBaseFragment<T : ViewBinding> : Fragment(), IView<T>, RxBusLis
         RxBus.INSTANCE.unregister(this)
     }
 
-    fun getBaseActivity(): AppBaseActivity<*> = activity as AppBaseActivity<*>
+    fun getBaseActivity() = activity as? AppBaseActivity<*>
 }

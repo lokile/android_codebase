@@ -41,4 +41,6 @@ abstract class AppBaseDialogFragment<T : ViewBinding> : Fragment(), IView<T>, Rx
         super.onDestroy()
         RxBus.INSTANCE.unregister(this)
     }
+
+    fun getBaseActivity() = activity as? AppBaseActivity<*>
 }
