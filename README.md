@@ -35,7 +35,7 @@ android{
 - Install RxJava/RxKotlin
 
 # Usage
-- Just extend the `AppBaseActivity` when creating an activity. It has build-in functions to keep the amount of boilerplate code to a minimum and handles known-issues.
+- Extend the `AppBaseActivity`, `AppBaseDialogFragment`, `AppBaseFragment` when creating an activity or fragment. It has built-in functions to keep the amount of boilerplate code to a minimum and handles known issues for you. Although the class types are different, the interfaces are similar
 ```
 class MainActivity : AppBaseActivity<MainActivityViewBinding>() {
 
@@ -45,12 +45,11 @@ class MainActivity : AppBaseActivity<MainActivityViewBinding>() {
   
   override fun setupView(savedInstanceState: Bundle?) {
     //binding is your ViewBinding
-    binding.yourView
+    binding?.yourView
   }
 }
-```
-- Or if you want to create a Fragment, change the `AppBaseActivity` above to `AppBaseDialogFragment` or `AppBaseFragment`, the types are different but the interface is similar
 
+```
 - To create an `RecyclerAdapter`:
 ```
 class YourAdapter(list: MutableList<YourData>) :
