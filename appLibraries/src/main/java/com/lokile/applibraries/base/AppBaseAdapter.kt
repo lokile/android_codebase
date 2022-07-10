@@ -23,6 +23,17 @@ abstract class AppBaseAdapter<T, VB : ViewBinding>(var listItem: MutableList<T> 
 
     fun registerItemClickListener(): LiveData<OnItemClickEvent<T>> = itemClickLiveData
 
+    fun setOnItemClickListener(
+        context: Context,
+        holder: AppBaseRecyclerViewHolder<VB>,
+        position: Int,
+        item: T, onItemCLick: () -> Unit
+    ) {
+        holder.viewBinding.root.setOnClickListener {
+            onItemCLick()
+        }
+    }
+
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
@@ -41,7 +52,7 @@ abstract class AppBaseAdapter<T, VB : ViewBinding>(var listItem: MutableList<T> 
 
     override fun onBindViewHolder(holder: AppBaseRecyclerViewHolder<VB>, position: Int) {
         onBindView(holder.itemView.context, holder, position, listItem[position])
-        holder.viewBinding.root.setOnClickListener {
+        setOnItemClickListener(holder.itemView.context, holder, position, listItem[position]) {
             itemClickLiveData.postValue(
                 OnItemClickEvent(
                     position,
