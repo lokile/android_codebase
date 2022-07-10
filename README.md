@@ -35,7 +35,7 @@ android{
 - Install RxJava/RxKotlin
 
 # Usage
-- Extend the `AppBaseActivity`, `AppBaseDialogFragment`, `AppBaseFragment` when creating an activity or fragment. It has built-in functions to keep the amount of boilerplate code to a minimum and handles known issues for you. Although the class types are different, the interfaces are similar
+- Extend the `AppBaseActivity`, `AppBaseDialogFragment`, `AppBaseFragment` when creating an activity or fragment. It has built-in functions to keep the amount of boilerplate code to a minimum and handles known issues for you.
 ```
 class MainActivity : AppBaseActivity<MainActivityViewBinding>() {
 
