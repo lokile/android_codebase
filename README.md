@@ -85,7 +85,13 @@ broadcastEvent(yourEventTypeData)
 - Receive:
 ```
 /* 
-  (this functions is supported in AppBaseActivity, AppBaseDiLogFragment, AppBaseFragment, AppBaseViewModel, BaseApplication) 
+  this functions is supported in the following components:
+  - AppBaseActivity
+  - AppBaseDiLogFragment
+  - AppBaseFragment
+  - AppBaseViewModel
+  - BaseApplication
+  
 */
 registerEventListener<YourEventType> {event->
 
