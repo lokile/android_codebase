@@ -52,8 +52,7 @@ class MainActivity : AppBaseActivity<MainActivityViewBinding>() {
 ```
 - To create an `RecyclerAdapter`:
 ```
-class YourAdapter(list: MutableList<YourData>) :
-    AppBaseAdapter<YourData, YourViewBinding>(list) {
+class YourAdapter(list: MutableList<YourData>) : AppBaseAdapter<YourData, YourViewBinding>(list) {
     override fun onCreateViewBinding(inflater: LayoutInflater, viewType: Int): YourViewBinding =
         YourViewBinding.inflate(inflater)
     
@@ -73,7 +72,7 @@ adapter.registerItemClickListener().observe(this) {item->
   //handle onClickListener
 } 
 ```
-- To send/receive events like EventBus:
+- To send/receive events between modules:
 ```
 //send (can call this function at anywhere)
 broadcastEvent(yourEventTypeData)
