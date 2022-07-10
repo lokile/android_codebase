@@ -23,7 +23,7 @@ abstract class AppBaseAdapter<T, VB : ViewBinding>(var listItem: MutableList<T> 
 
     fun registerItemClickListener(): LiveData<OnItemClickEvent<T>> = itemClickLiveData
 
-    fun setOnItemClickListener(
+    protected fun setOnItemClickListener(
         context: Context,
         holder: AppBaseRecyclerViewHolder<VB>,
         position: Int,
