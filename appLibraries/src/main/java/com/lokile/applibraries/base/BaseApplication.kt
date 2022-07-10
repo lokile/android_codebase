@@ -11,11 +11,11 @@ import com.lokile.firebase_analytics_support.initFirebase
 
 abstract class BaseApplication : Application(), RxBusListener {
     override val uuid: Int by lazy { RxBus.INSTANCE.newUUID() }
-    abstract fun allowLogException():Boolean
+    abstract fun hasCrashlytics(): Boolean
     override fun onCreate() {
         super.onCreate()
         app = this
-        isLogException = allowLogException()
+        isLogException = hasCrashlytics()
     }
 
     fun setupFirebase(
