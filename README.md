@@ -35,7 +35,8 @@ android{
 - Install RxJava/RxKotlin
 
 # Usage
-- Extend the `AppBaseActivity`, `AppBaseDialogFragment`, `AppBaseFragment` when creating an activity or fragment. It has built-in functions to keep the amount of boilerplate code to a minimum and handles known issues for you.
+## Base Actvity/Fragment:
+- Extend the `AppBaseActivity`, `AppBaseDialogFragment`, `AppBaseFragment` when creating activities or fragments. It has built-in functions to keep the amount of boilerplate code to a minimum and handles known issues for you.
 ```
 class MainActivity : AppBaseActivity<MainActivityViewBinding>() {
 
@@ -49,6 +50,7 @@ class MainActivity : AppBaseActivity<MainActivityViewBinding>() {
   }
 }
 
+## Base Adapter:
 ```
 - To create an `RecyclerAdapter`:
 ```
@@ -72,13 +74,16 @@ adapter.registerItemClickListener().observe(this) {item->
   //handle onClickListener
 } 
 ```
-- To send/receive events between modules:
-```
-//send (can call this function at anywhere)
-broadcastEvent(yourEventTypeData)
 
+## Send/Receive events between modules:
+- Send event (can call this function anywhere)
+```
+broadcastEvent(yourEventTypeData)
+```
+
+- Receive:
+```
 /* 
-  Receive:
   (this functions is supported in AppBaseActivity, AppBaseDiLogFragment, AppBaseFragment, AppBaseViewModel, BaseApplication) 
 */
 registerEventListener<YourEventType> {event->
