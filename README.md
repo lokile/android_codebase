@@ -74,3 +74,16 @@ adapter.registerItemClickListener().observe(this) {item->
   //handle onClickListener
 }
 ```
+- To send/receive events like EventBus:
+```
+//send (can call this function at anywhere)
+broadcastEvent(yourEventTypeData)
+
+/* 
+  Receive:
+  (this functions is supported in AppBaseActivity, AppBaseDiLogFragment, AppBaseFragment, AppBaseViewModel, BaseApplication) 
+*/
+registerEventListener<YourEventType>({event->
+
+})
+```
