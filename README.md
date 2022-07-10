@@ -56,7 +56,7 @@ class YourAdapter(list: MutableList<YourData>) :
     AppBaseAdapter<YourData, YourViewBinding>(list) {
     override fun onCreateViewBinding(inflater: LayoutInflater, viewType: Int): YourViewBinding =
         YourViewBinding.inflate(inflater)
-
+    
     override fun onBindView(
         context: Context,
         holder: AppBaseRecyclerViewHolder<YourViewBinding>,
@@ -71,7 +71,7 @@ class YourAdapter(list: MutableList<YourData>) :
 val adapter = YourAdapter(...)
 adapter.registerItemClickListener().observe(this) {item->
   //handle onClickListener
-}
+} 
 ```
 - To send/receive events like EventBus:
 ```
