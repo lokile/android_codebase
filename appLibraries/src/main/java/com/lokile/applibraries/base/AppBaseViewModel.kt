@@ -22,4 +22,8 @@ open class AppBaseViewModel : ViewModel(), RxBusListener {
         compositeDisposable?.clear()
         RxBus.INSTANCE.unregister(this)
     }
+
+    inline fun <reified T> registerEventListener(crossinline callBack: (T) -> Unit) {
+        RxBus.INSTANCE.register<T>(this, callBack)
+    }
 }

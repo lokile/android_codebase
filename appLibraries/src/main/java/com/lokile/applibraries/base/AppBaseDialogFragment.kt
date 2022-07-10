@@ -42,5 +42,9 @@ abstract class AppBaseDialogFragment<T : ViewBinding> : Fragment(), IView<T>, Rx
         RxBus.INSTANCE.unregister(this)
     }
 
+    inline fun <reified T> registerEventListener(crossinline callBack: (T) -> Unit) {
+        RxBus.INSTANCE.register<T>(this, callBack)
+    }
+
     fun getBaseActivity() = activity as? AppBaseActivity<*>
 }

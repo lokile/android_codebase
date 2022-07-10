@@ -81,6 +81,10 @@ abstract class AppBaseActivity<T : ViewBinding> : AppCompatActivity(), IView<T>,
         }
     }
 
+    inline fun <reified T> registerEventListener(crossinline callBack: (T) -> Unit) {
+        RxBus.INSTANCE.register<T>(this, callBack)
+    }
+
     override fun onDestroy() {
         super.onDestroy()
         RxBus.INSTANCE.unregister(this)
