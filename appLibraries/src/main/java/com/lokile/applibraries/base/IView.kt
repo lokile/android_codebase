@@ -6,5 +6,5 @@ import androidx.viewbinding.ViewBinding
 
 interface IView<T : ViewBinding> {
     fun setupView(savedInstanceState: Bundle?)
-    fun onCreateViewBinding(layoutInflater: LayoutInflater): T
+    fun onCreateViewBinding(layoutInflater: LayoutInflater): T?
 }

@@ -40,7 +40,7 @@ abstract class AppBaseActivity<T : ViewBinding> : AppCompatActivity(), IView<T>,
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(binding.root)
+        setContentView(binding?.root)
         try {
             setupView(savedInstanceState)
         } catch (e: Exception) {
