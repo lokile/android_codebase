@@ -50,8 +50,9 @@ class MainActivity : AppBaseActivity<MainActivityViewBinding>() {
   }
 }
 
-## Base Adapter:
+
 ```
+## Base Adapter:
 - To create an `RecyclerAdapter`:
 ```
 class YourAdapter(list: MutableList<YourData>) : AppBaseAdapter<YourData, YourViewBinding>(list) {
