@@ -10,17 +10,16 @@ import com.lokile.applibraries.managers.RxBus
 import com.lokile.applibraries.managers.RxBusListener
 import com.lokile.applibraries.utils.handleException
 
-abstract class AppBaseDialogFragment<T : ViewBinding> : Fragment(), IView<T>, RxBusListener {
+abstract class AppBaseDialogFragment : Fragment(), IView, RxBusListener {
     override val uuid: Int by lazy { RxBus.INSTANCE.newUUID() }
-    var binding: T? = null
+    var viewBindingProvider: ((LayoutInflater) -> ViewBinding)? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = onCreateViewBinding(inflater)
-        return binding?.root
+        return viewBindingProvider?.invoke(inflater)?.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -34,7 +33,7 @@ abstract class AppBaseDialogFragment<T : ViewBinding> : Fragment(), IView<T>, Rx
 
     override fun onDestroyView() {
         super.onDestroyView()
-        binding = null
+        RxBus.INSTANCE.unregister(this)
     }
 
     override fun onDestroy() {
@@ -46,5 +45,5 @@ abstract class AppBaseDialogFragment<T : ViewBinding> : Fragment(), IView<T>, Rx
         RxBus.INSTANCE.register<T>(this, callBack)
     }
 
-    fun getBaseActivity() = activity as? AppBaseActivity<*>
+    fun getBaseActivity() = activity as? AppBaseActivity
 }

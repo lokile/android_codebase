@@ -2,6 +2,7 @@ package com.lokile.applibraries.base
 
 import android.content.pm.PackageManager
 import android.os.Bundle
+import android.view.LayoutInflater
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.view.WindowInsetsCompat
@@ -12,10 +13,10 @@ import com.lokile.applibraries.managers.RxBusListener
 import com.lokile.applibraries.utils.checkAppPermission
 import com.lokile.applibraries.utils.handleException
 
-abstract class AppBaseActivity<T : ViewBinding> : AppCompatActivity(), IView<T>, RxBusListener {
+abstract class AppBaseActivity : AppCompatActivity(), IView, RxBusListener {
     private val permissionRequestCallBack = HashMap<Int, (result: Boolean) -> Unit>()
     override val uuid: Int by lazy { RxBus.INSTANCE.newUUID() }
-    val binding by lazy { onCreateViewBinding(layoutInflater) }
+    var viewBindingProvider: ((LayoutInflater) -> ViewBinding)? = null
     private var permissionRequestCode = 1
 
     fun requestPermission(permissionList: List<String>, callback: (result: Boolean) -> Unit) {
@@ -40,7 +41,7 @@ abstract class AppBaseActivity<T : ViewBinding> : AppCompatActivity(), IView<T>,
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(binding?.root)
+        setContentView(viewBindingProvider?.invoke(layoutInflater)?.root)
         try {
             setupView(savedInstanceState)
         } catch (e: Exception) {
