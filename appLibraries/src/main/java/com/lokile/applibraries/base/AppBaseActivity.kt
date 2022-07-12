@@ -16,7 +16,7 @@ import com.lokile.applibraries.utils.handleException
 abstract class AppBaseActivity : AppCompatActivity(), IView, RxBusListener {
     private val permissionRequestCallBack = HashMap<Int, (result: Boolean) -> Unit>()
     override val uuid: Int by lazy { RxBus.INSTANCE.newUUID() }
-    var viewBindingProvider: ((LayoutInflater) -> ViewBinding)? = null
+    internal var viewBindingProvider: ((LayoutInflater) -> ViewBinding)? = null
     private var permissionRequestCode = 1
 
     fun requestPermission(permissionList: List<String>, callback: (result: Boolean) -> Unit) {

@@ -12,7 +12,7 @@ import com.lokile.applibraries.utils.handleException
 
 abstract class AppBaseDialogFragment : Fragment(), IView, RxBusListener {
     override val uuid: Int by lazy { RxBus.INSTANCE.newUUID() }
-    var viewBindingProvider: ((LayoutInflater) -> ViewBinding)? = null
+    internal var viewBindingProvider: ((LayoutInflater) -> ViewBinding)? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
