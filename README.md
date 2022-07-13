@@ -44,14 +44,26 @@ class MainActivity : AppBaseActivity<MainActivityViewBinding>() {
     - It manages the lifecycle of viewbinding and avoid memory leak
     - No need to call setContentView(), it will do it for you
   */
-  val binding by viewBinding(VideoFragmentViewBinding::inflate)
+  val binding by viewBinding(YourActivityBinding::inflate)
   
   override fun setupView(savedInstanceState: Bundle?) {
-    binding?.yourView
+    binding.yourView
   }
 }
+```
+```
+class YourFragment : AppBaseFragment<MainActivityViewBinding>() {
 
-
+  /*
+    - It manages the lifecycle of viewbinding and avoid memory leak
+    - No need to handle onCreateView(), it will do it for you
+  */
+  val binding by viewBinding(YourFragmentBinding::inflate)
+  
+  override fun setupView(savedInstanceState: Bundle?) {
+    binding.yourView
+  }
+}
 ```
 ## Base Adapter:
 - To create an `RecyclerAdapter`:
