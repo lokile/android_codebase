@@ -62,5 +62,5 @@ class FragmentViewBindingDelegate<T : ViewBinding>(
     }
 }
 
-fun <T : ViewBinding> AppBaseFragment.viewBinding(viewBindingFactory: (LayoutInflater) -> T) =
+fun <T : ViewBinding> AppBaseFragment.viewBinding(viewBindingFactory: LayoutInflater.() -> T) =
     FragmentViewBindingDelegate(this, viewBindingFactory)

@@ -23,5 +23,5 @@ class ActivityViewBindingDelegate<T : ViewBinding>(
     }
 }
 
-fun <T : ViewBinding> AppBaseActivity.viewBinding(viewBindingFactory: (LayoutInflater) -> T) =
+fun <T : ViewBinding> AppBaseActivity.viewBinding(viewBindingFactory: LayoutInflater.() -> T) =
     ActivityViewBindingDelegate(this, viewBindingFactory)

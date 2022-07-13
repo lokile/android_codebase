@@ -63,5 +63,5 @@ class DialogFragmentViewBindingDelegate<T : ViewBinding>(
     }
 }
 
-fun <T : ViewBinding> AppBaseDialogFragment.viewBinding(viewBindingFactory: (LayoutInflater) -> T) =
+fun <T : ViewBinding> AppBaseDialogFragment.viewBinding(viewBindingFactory: LayoutInflater.() -> T) =
     DialogFragmentViewBindingDelegate(this, viewBindingFactory)
