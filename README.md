@@ -38,7 +38,7 @@ android{
 ## Base Actvity/Fragment:
 - Extend the `AppBaseActivity`, `AppBaseDialogFragment`, `AppBaseFragment` when creating activities or fragments. It has built-in functions to keep the amount of boilerplate code to a minimum and handles known issues for you.
 ```
-class MainActivity : AppBaseActivity<MainActivityViewBinding>() {
+class MainActivity : AppBaseActivity() {
 
   /*
     - It manages the lifecycle of viewbinding and avoid memory leak
@@ -52,7 +52,7 @@ class MainActivity : AppBaseActivity<MainActivityViewBinding>() {
 }
 ```
 ```
-class YourFragment : AppBaseFragment<MainActivityViewBinding>() {
+class YourFragment : AppBaseFragment() {
 
   /*
     - It manages the lifecycle of viewbinding and avoid memory leak
