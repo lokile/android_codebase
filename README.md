@@ -40,12 +40,13 @@ android{
 ```
 class MainActivity : AppBaseActivity<MainActivityViewBinding>() {
 
-  //it manages the lifecycle of viewbinding and avoid memory leak
-  override fun onCreateViewBinding(layoutInflater: LayoutInflater): MainActivityViewBinding =
-        MainActivityViewBinding.inflate(layoutInflater)
+  /*
+    - It manages the lifecycle of viewbinding and avoid memory leak
+    - No need to call setContentView(), it will do it for you
+  */
+  val binding by viewBinding(VideoFragmentViewBinding::inflate)
   
   override fun setupView(savedInstanceState: Bundle?) {
-    //binding is your ViewBinding
     binding?.yourView
   }
 }
