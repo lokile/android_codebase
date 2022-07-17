@@ -1,6 +1,7 @@
 package com.lokile.applibraries.base
 
 import android.content.pm.PackageManager
+import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import androidx.appcompat.app.AppCompatActivity
@@ -14,20 +15,24 @@ import com.lokile.applibraries.utils.checkAppPermission
 import com.lokile.applibraries.utils.handleException
 
 abstract class AppBaseActivity : AppCompatActivity(), IView, RxBusListener {
-    private val permissionRequestCallBack = HashMap<Int, (result: Boolean) -> Unit>()
+    private val permissionRequestCallBack =
+        HashMap<Int, (result: Boolean, isPermanentDenied: Boolean) -> Unit>()
     override val uuid: Int by lazy { RxBus.INSTANCE.newUUID() }
     internal var viewBindingProvider: ((LayoutInflater) -> ViewBinding)? = null
     private var permissionRequestCode = 1
 
-    fun requestPermission(permissionList: List<String>, callback: (result: Boolean) -> Unit) {
-        if (!checkAppPermission(permissionList)) {
+    fun requestPermission(
+        permissionList: List<String>,
+        callback: (result: Boolean, isPermanentDenied: Boolean) -> Unit
+    ) {
+        if (!checkAppPermission(permissionList) && Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             val requestCode = permissionRequestCode++
             ActivityCompat.requestPermissions(
                 this, permissionList.toTypedArray(), requestCode
             )
             permissionRequestCallBack[requestCode] = callback
         } else {
-            callback.invoke(true)
+            callback.invoke(true, false)
         }
     }
 
@@ -35,7 +40,11 @@ abstract class AppBaseActivity : AppCompatActivity(), IView, RxBusListener {
         requestCode: Int, permissions: Array<out String>, grantResults: IntArray
     ) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        permissionRequestCallBack[requestCode]?.invoke(grantResults.all { it == PackageManager.PERMISSION_GRANTED })
+        permissionRequestCallBack[requestCode]?.invoke(
+            grantResults.all { it == PackageManager.PERMISSION_GRANTED },
+            Build.VERSION.SDK_INT < Build.VERSION_CODES.M || permissions
+                .any { shouldShowRequestPermissionRationale(it) }
+        )
         permissionRequestCallBack.remove(requestCode)
     }
 
