@@ -31,6 +31,11 @@ android{
     ...
 }
 ```
+- Ktx:
+```
+  implementation "androidx.core:core-ktx:1.8.0"
+  implementation "androidx.fragment:fragment-ktx:1.5.0"
+```
 - Install firebase-crashlytics, firebase-analytics, firebase-config (optional)
 - Install RxJava/RxKotlin
 
