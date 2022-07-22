@@ -50,7 +50,10 @@ abstract class AppBaseActivity : AppCompatActivity(), IView, RxBusListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(viewBindingProvider?.invoke(layoutInflater)?.root)
+        val view = viewBindingProvider?.invoke(layoutInflater)?.root
+        if (view != null) {
+            setContentView(view)
+        }
         try {
             setupView(savedInstanceState)
         } catch (e: Exception) {
