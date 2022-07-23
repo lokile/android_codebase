@@ -13,7 +13,7 @@ class OnItemClickEvent<T>(val position: Int, val item: T, val view: View)
 abstract class AppBaseAdapter<T, VB : ViewBinding>(var listItem: MutableList<T> = mutableListOf()) :
     RecyclerView.Adapter<AppBaseRecyclerViewHolder<VB>>() {
     private val itemClickLiveData = MutableLiveData<OnItemClickEvent<T>>()
-    abstract fun onCreateViewBinding(inflater: LayoutInflater, viewType: Int): VB
+    abstract fun onCreateViewBinding(inflater: LayoutInflater, parent: ViewGroup, viewType: Int): VB
     abstract fun onBindView(
         context: Context,
         holder: AppBaseRecyclerViewHolder<VB>,
@@ -41,6 +41,7 @@ abstract class AppBaseAdapter<T, VB : ViewBinding>(var listItem: MutableList<T> 
         return AppBaseRecyclerViewHolder(
             onCreateViewBinding(
                 LayoutInflater.from(parent.context),
+                parent,
                 viewType
             )
         )
