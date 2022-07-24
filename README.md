@@ -74,8 +74,8 @@ class YourFragment : AppBaseFragment() {
 - To create an `RecyclerAdapter`:
 ```
 class YourAdapter(list: MutableList<YourData>) : AppBaseAdapter<YourData, YourViewBinding>(list) {
-    override fun onCreateViewBinding(inflater: LayoutInflater, viewType: Int): YourViewBinding =
-        YourViewBinding.inflate(inflater)
+    override fun onCreateViewBinding(inflater: LayoutInflater, parent: ViewGroup, viewType: Int): YourViewBinding =
+        YourViewBinding.inflate(inflater, parent, false)
     
     override fun onBindView(
         context: Context,
