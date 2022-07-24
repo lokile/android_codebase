@@ -57,7 +57,7 @@ class DialogFragmentViewBindingDelegate<T : ViewBinding>(
 
         val lifecycle = fragment.viewLifecycleOwner.lifecycle
         if (!lifecycle.currentState.isAtLeast(Lifecycle.State.INITIALIZED)) {
-            throw IllegalStateException("Should not attempt to get bindings when Fragment views are destroyed.")
+            throw IllegalStateException("Error: null")
         }
         return viewBindingFactory(thisRef.layoutInflater).also { this.value = it }
     }

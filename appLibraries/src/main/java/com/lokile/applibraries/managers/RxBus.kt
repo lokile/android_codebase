@@ -42,4 +42,4 @@ enum class RxBus {
     }
 }
 
-fun <T> broadcastEvent(event: Any) = RxBus.INSTANCE.post(event)
+fun broadcastEvent(event: Any) = RxBus.INSTANCE.post(event)
