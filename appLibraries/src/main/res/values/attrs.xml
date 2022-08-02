@@ -4,6 +4,10 @@
         <attr name="initColor" format="reference|color" />
     </declare-styleable>
 
+    <declare-styleable name="AppImageButton">
+        <attr name="initColor" format="reference|color" />
+    </declare-styleable>
+
     <declare-styleable name="AppTextView">
         <attr name="htmlText" format="reference|color" />
     </declare-styleable>

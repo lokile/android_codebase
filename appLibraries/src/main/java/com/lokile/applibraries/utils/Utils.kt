@@ -10,6 +10,7 @@ import android.os.Looper
 import android.os.Parcelable
 import android.util.Log
 import android.view.ViewConfiguration
+import androidx.appcompat.widget.AppCompatImageButton
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.core.content.ContextCompat
 import com.lokile.applibraries.BuildConfig
@@ -60,6 +61,18 @@ fun ensureBackgroundThread(callback: () -> Unit) {
 }
 
 fun AppCompatImageView.changeColor(context: Context, colorId: Int, parse: Boolean = true) {
+    if (parse) {
+        setColorFilter(
+            context.getColorRessource(colorId), PorterDuff.Mode.SRC_ATOP
+        )
+    } else {
+        setColorFilter(
+            colorId, PorterDuff.Mode.SRC_ATOP
+        )
+    }
+}
+
+fun AppCompatImageButton.changeColor(context: Context, colorId: Int, parse: Boolean = true) {
     if (parse) {
         setColorFilter(
             context.getColorRessource(colorId), PorterDuff.Mode.SRC_ATOP
