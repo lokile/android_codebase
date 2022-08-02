@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <attr name="initColor" format="reference|color" />
+
     <declare-styleable name="AppImageView">
-        <attr name="initColor" format="reference|color" />
+        <attr name="initColor" />
     </declare-styleable>
 
     <declare-styleable name="AppImageButton">
-        <attr name="initColor" format="reference|color" />
+        <attr name="initColor" />
     </declare-styleable>
 
     <declare-styleable name="AppTextView">
